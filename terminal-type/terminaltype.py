@@ -69,7 +69,6 @@ while True:
         break
 
 #Calculations
-
 netTime = time.time() - starttime
 raw_wpm = (len(prompt)/5) // (netTime / 60)
 net_wpm = raw_wpm - (incorrect_char / (netTime / 60))
