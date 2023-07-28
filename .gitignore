@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 .idea/
 
 .DS_Store
 
 .idea
 
+=======
+my-test.db
+/terminal-type-gui
+/terminal-type/TODO.md
+>>>>>>> 0fe9c72b73b5c58a57567ef630c7b04643ff9450

@@ -1,13 +1,17 @@
-import getch, sys, time, random
+import getch, sys, time, random, os
 
 #Chooses random prompt
-with open('1000words.txt', 'r') as file:
+with open('250words.txt', 'r') as file:
     word_bank = file.read()
 words = word_bank.split() #Splits the string of text into seperate words
 
+#User picks how many words
+prompt_length = int(input("Input word count: ex. 15, 30, 100, etc"))
+print("\n")
+
 #Adds x number of random words into prompt list
 prompt_words = []
-for word in range(30):
+for word in range(prompt_length):
     next_word = words[random.randint(0,249)]
     prompt_words.append(next_word)
 
@@ -18,7 +22,14 @@ prompt = seperator.join(prompt_words)
 #Displays typing prompt in terminal
 print(" ")
 print(prompt)
-print("=================================================================================")
+
+#Creates line
+terminal_size = os.get_terminal_size()
+terminal_width = terminal_size.columns
+# Create a line
+line = '-' * terminal_width
+print(line)
+
 print("Begin Text:")
 
 #Initiate variables
@@ -58,7 +69,6 @@ while True:
         break
 
 #Calculations
-
 netTime = time.time() - starttime
 raw_wpm = (len(prompt)/5) // (netTime / 60)
 net_wpm = raw_wpm - (incorrect_char / (netTime / 60))
@@ -66,7 +76,6 @@ if net_wpm <= 0:
     net_wpm = 0
 accuracy = (len(prompt) - incorrect_char) / len(prompt)
 
-print("")
 print("Net Words per minute:", round(net_wpm))
 print("Raw Words per minute:", round(raw_wpm))
 print("Accuracy:", round((accuracy * 100), 2))
